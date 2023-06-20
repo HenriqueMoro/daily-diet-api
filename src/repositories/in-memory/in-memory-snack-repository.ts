@@ -46,4 +46,10 @@ export class InMemorySnacksRepository implements ISnacksRepository {
     const snack = this.snacks.find((snack) => snack.id === id)
     return snack || null
   }
+
+  async findManyByUserId(userId: string, page: number) {
+    return this.snacks
+      .filter((snack) => snack.user_id === userId)
+      .slice((page - 1) * 20, page * 20)
+  }
 }

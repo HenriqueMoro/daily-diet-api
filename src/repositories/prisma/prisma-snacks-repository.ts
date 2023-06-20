@@ -45,4 +45,16 @@ export class PrismaSnacksRepository implements ISnacksRepository {
 
     return snack
   }
+
+  async findManyByUserId(userId: string, page: number) {
+    const snacks = await prisma.snack.findMany({
+      where: {
+        user_id: userId,
+      },
+      skip: (page - 1) * 20,
+      take: 20,
+    })
+
+    return snacks
+  }
 }
