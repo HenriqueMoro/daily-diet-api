@@ -17,7 +17,7 @@ export class FetchUserSnacksHistoryUseCase {
     userId,
     page,
   }: FetchUserSnacksHistoryUseCaseRequest): Promise<FetchUserSnacksHistoryUseCaseResponse> {
-    const snacks = await this.snackRepository.findManyByUserId(userId, page)
+    const snacks = await this.snackRepository.findManyByUserId(userId)
 
     return {
       snacks,

@@ -5,5 +5,7 @@ export interface ISnacksRepository {
   update(data: Prisma.SnackUpdateInput & { id: string }): Promise<Snack>
   delete(id: string): Promise<Snack | null>
   findById(id: string): Promise<Snack | null>
-  findManyByUserId(userId: string, page: number): Promise<Snack[]>
+  findManyByUserId(userId: string): Promise<Snack[]>
+  countByUserId(userId: string): Promise<number>
+  countByUserIdAndOnDiet(userId: string, on_diet: boolean): Promise<number>
 }

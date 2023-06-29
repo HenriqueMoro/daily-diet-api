@@ -46,15 +46,36 @@ export class PrismaSnacksRepository implements ISnacksRepository {
     return snack
   }
 
-  async findManyByUserId(userId: string, page: number) {
+  async findManyByUserId(userId: string) {
     const snacks = await prisma.snack.findMany({
       where: {
         user_id: userId,
       },
-      skip: (page - 1) * 20,
-      take: 20,
     })
 
     return snacks
   }
+
+  async countByUserId(userId: string) {
+    const count = await prisma.snack.count({
+      where: {
+        user_id: userId,
+      },
+    })
+
+    return count
+  }
+
+  async countByUserIdAndOnDiet(userId: string, on_diet: boolean) {
+    const count = await prisma.snack.count({
+      where: {
+        user_id: userId,
+        on_diet,
+      },
+    })
+
+    return count
+  }
+
+  async findManyBestSequenceByUserId(userId: string) {}
 }
